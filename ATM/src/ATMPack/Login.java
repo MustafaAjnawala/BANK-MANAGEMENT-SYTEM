@@ -1,10 +1,16 @@
-	package ATMPack;
-	import java.awt.Image;
+package ATMPack;
 
+import java.awt.Image;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 	
-	public class Login extends JFrame {
+	//class inheriting the Jframe and implementing the actionListener for adding actions to buttons
+	public class Login extends JFrame implements ActionListener {
+		JButton login,clear,sinup;//defining them globally to access outside the constructor too
+		JTextField cardText;
+		JPasswordField pinText;
+		
 		Login(){
 			setTitle("ATM Window");//setting name to the window
 						
@@ -29,8 +35,9 @@ import java.awt.*;
 			add(card);
 			
 			//to add the textfield for the Card num
-			JTextField cardText = new JTextField();
-			cardText.setBounds(300, 170, 230, 35);
+			cardText = new JTextField();
+			cardText.setBounds(300, 180, 230, 35);
+			cardText.setFont(new Font("Raleway",Font.PLAIN,15));
 			add(cardText);
 			
 			JLabel pin = new JLabel("PIN:");
@@ -38,27 +45,31 @@ import java.awt.*;
 			pin.setBounds(140, 220, 400, 100);
 			add(pin);
 			
-			JTextField pinText = new JTextField();
+			pinText = new JPasswordField();
 			pinText.setBounds(300, 255, 230, 35);
+			pinText.setFont(new Font("Raleway",Font.PLAIN,15));
 			add(pinText);
 			
 			//to add the signin button
-			JButton login  =new JButton("SIGN IN");
+			login  =new JButton("SIGN IN");
 			login.setBounds(300,320,100,30);
 			login.setBackground(Color.BLACK);
 			login.setForeground(Color.WHITE);
+			login.addActionListener(this);
 			add(login);
 			
-			JButton clear  =new JButton("CLEAR");
+			clear  =new JButton("CLEAR");
 			clear.setBounds(430,320,100,30);
 			clear.setBackground(Color.BLACK);
 			clear.setForeground(Color.WHITE);
+			clear.addActionListener(this);
 			add(clear);
 			
-			JButton sinup  =new JButton("SIGN UP");
+			sinup  =new JButton("SIGN UP");
 			sinup.setBounds(300,370,230,30);
 			sinup.setBackground(Color.BLACK);
 			sinup.setForeground(Color.WHITE);
+			sinup.addActionListener(this);
 			add(sinup);
 			
 			getContentPane().setBackground(Color.gray);//to set the color of the window BG
@@ -66,6 +77,19 @@ import java.awt.*;
 			setSize(800,480);
 			setVisible(true);//for showing the ATM window
 			setLocation(350,200);
+		}
+		
+		public void actionPerformed(ActionEvent ae) {
+			//for overriding the method in the interface
+			if(ae.getSource() == clear) {
+				cardText.setText("");
+				pinText.setText("");
+				
+			} else if(ae.getSource() == login) {
+				
+			} else if(ae.getSource() == sinup) {
+				
+			}
 		}
 		
 		public static void main(String args[]) {
