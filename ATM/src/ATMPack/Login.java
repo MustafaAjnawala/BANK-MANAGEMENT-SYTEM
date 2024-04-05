@@ -87,7 +87,11 @@ import java.awt.event.*;
 				
 			} else if(ae.getSource() == login) {
 				
+				
 			} else if(ae.getSource() == sinup) {
+				setVisible(false);
+				//creating an object of the signup page and setting visiblity as true
+				new Signup().setVisible(true);
 				
 			}
 		}
