@@ -4,7 +4,8 @@ import java.awt.Image;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-	
+import java.sql.*;
+
 	//class inheriting the Jframe and implementing the actionListener for adding actions to buttons
 	public class Login extends JFrame implements ActionListener {
 		JButton login,clear,sinup;//defining them globally to access outside the constructor too
@@ -86,6 +87,22 @@ import java.awt.event.*;
 				pinText.setText("");
 				
 			} else if(ae.getSource() == login) {
+				Conn conn = new Conn();
+				String cardnumber = cardText.getText();
+				String pin = pinText.getText();
+				String query = "select * from login where cardnumber  = '"+cardnumber+"' and pin = '"+pin+"'";
+				try {
+					//returns the datatype of checked
+					ResultSet rs = conn.s.executeQuery(query);
+					if(rs.next()) {
+						setVisible(false);//close the login frame
+						new Transactions().setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null,"Incorrect Card Number or PIN");
+					}
+				} catch(Exception e){
+					System.out.println(e);
+				}
 				
 				
 			} else if(ae.getSource() == sinup) {
