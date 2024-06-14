@@ -8,7 +8,7 @@ public class Conn {
 	Statement s;
 	public Conn(){
 		try {
-			c = DriverManager.getConnection("jdbc:mysql:///bank","root","Sql$123%");
+			c = DriverManager.getConnection("jdbc:mysql:///bank","root","password");
 			s= c.createStatement();
 			System.out.println("Connected to databse");
 		} catch(Exception e) {
